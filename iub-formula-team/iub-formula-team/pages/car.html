@@ -1,0 +1,139 @@
+<!-- pages/car.html -->
+<style>
+.specs-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--line); margin-top: 36px;
+}
+.spec-card { background: var(--dark2); padding: 28px 24px; transition: background .2s, border-top .2s; cursor: default; border-top: 3px solid transparent; }
+.spec-card:hover { background: var(--dark3); border-top-color: var(--gold); }
+.spec-num  { font-family: var(--font-mono); font-size: 30px; color: var(--gold); line-height: 1; }
+.spec-unit { font-family: var(--font-mono); font-size: 15px; color: var(--gold-dim); }
+.spec-name { font-family: var(--font-head); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+.spec-desc { font-size: 12px; color: #3d6080; margin-top: 5px; line-height: 1.55; }
+
+.car-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+
+/* DATA BARS */
+.data-bars { margin-top: 36px; display: flex; flex-direction: column; gap: 18px; }
+.db-row    { display: flex; flex-direction: column; gap: 6px; }
+.db-head   { display: flex; justify-content: space-between; align-items: baseline; }
+.db-label  { font-family: var(--font-head); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.db-val    { font-family: var(--font-mono); font-size: 13px; color: var(--gold); }
+.db-track  { height: 3px; background: var(--dark3); border-radius: 2px; }
+.db-fill   { height: 100%; background: linear-gradient(90deg, var(--navy-light), var(--gold)); border-radius: 2px; transition: width .9s ease; }
+
+/* TIMELINE */
+.tl-wrap { position: relative; padding-left: 28px; }
+.tl-wrap::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.tl-item  { position: relative; padding-bottom: 36px; padding-left: 24px; }
+.tl-dot   { position: absolute; left: -32px; top: 5px; width: 8px; height: 8px; background: var(--gold); clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%); }
+.tl-year  { font-family: var(--font-mono); font-size: 10px; color: var(--gold); letter-spacing: 3px; }
+.tl-event { font-family: var(--font-head); font-size: 18px; font-weight: 600; letter-spacing: .5px; margin-top: 4px; }
+.tl-detail { font-size: 13px; color: var(--muted); margin-top: 5px; line-height: 1.55; max-width: 400px; }
+
+@media (max-width: 800px) {
+  .specs-grid  { grid-template-columns: repeat(2,1fr); }
+  .car-split   { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 500px) {
+  .specs-grid  { grid-template-columns: 1fr; }
+  .spec-num    { font-size: 24px; }
+}
+</style>
+
+<div class="section">
+  <div class="sec-label">// 003 — Vehicle</div>
+  <h2 class="sec-title">The Machine</h2>
+  <p class="sec-body">Target specifications for the 2025 competition vehicle. Final numbers subject to revision during development.</p>
+  <div class="specs-grid">
+    <div class="spec-card">
+      <div><span class="spec-num">600</span><span class="spec-unit"> cc</span></div>
+      <div class="spec-name">Engine Displacement</div>
+      <div class="spec-desc">Single-cylinder 4-stroke. SAE-mandated 20 mm intake restrictor.</div>
+    </div>
+    <div class="spec-card">
+      <div><span class="spec-num">~55</span><span class="spec-unit"> hp</span></div>
+      <div class="spec-name">Peak Power</div>
+      <div class="spec-desc">Estimated at crank after restrictor tuning and ECU remapping.</div>
+    </div>
+    <div class="spec-card">
+      <div><span class="spec-num">270</span><span class="spec-unit"> kg</span></div>
+      <div class="spec-name">Target Weight</div>
+      <div class="spec-desc">Full car + driver, competition ready with all fluids.</div>
+    </div>
+    <div class="spec-card">
+      <div><span class="spec-num">Steel</span></div>
+      <div class="spec-name">Chassis Type</div>
+      <div class="spec-desc">Spaceframe tubular steel. FEA-validated to SAE rollover requirements.</div>
+    </div>
+    <div class="spec-card">
+      <div><span class="spec-num">DW</span><span class="spec-unit"> ×4</span></div>
+      <div class="spec-name">Suspension</div>
+      <div class="spec-desc">Double wishbone all corners. Adjustable spring and damper rates.</div>
+    </div>
+    <div class="spec-card">
+      <div><span class="spec-num">DL1</span></div>
+      <div class="spec-name">Data Logger</div>
+      <div class="spec-desc">Real-time telemetry: speed, G-force, temperatures, throttle position.</div>
+    </div>
+    <div class="spec-card">
+      <div><span class="spec-num">R13</span><span class="spec-unit"> in</span></div>
+      <div class="spec-name">Wheel Size</div>
+      <div class="spec-desc">13-inch alloys. Hoosier slick tyres, competition spec.</div>
+    </div>
+    <div class="spec-card">
+      <div><span class="spec-num">Dry</span></div>
+      <div class="spec-name">Lubrication</div>
+      <div class="spec-desc">Dry sump conversion for consistent oil supply under cornering loads.</div>
+    </div>
+    <div class="spec-card">
+      <div><span class="spec-num">SAE</span></div>
+      <div class="spec-name">Rulebook</div>
+      <div class="spec-desc">Formula SAE Rules 2024. Student class, IC category.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section car-split">
+  <div>
+    <div class="sec-label">// 004 — Performance Targets</div>
+    <h2 class="sec-title">Numbers</h2>
+    <div class="data-bars" id="bars"></div>
+  </div>
+  <div>
+    <div class="sec-label">// 005 — Build Timeline</div>
+    <h2 class="sec-title">Schedule</h2>
+    <div class="tl-wrap">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2024 · SEP</div><div class="tl-event">Project Kick-off</div><div class="tl-detail">Team formed. Rulebook reviewed. Design brief issued to all sub-teams.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2024 · NOV</div><div class="tl-event">Concept Design Review</div><div class="tl-detail">Layout selected. Suspension geometry and engine placement confirmed via MATLAB.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2024 · DEC</div><div class="tl-event">Design Freeze</div><div class="tl-detail">CAD complete. FEA sign-off on chassis, roll hoop and impact attenuator.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2025 · FEB</div><div class="tl-event">Fabrication Start</div><div class="tl-detail">Chassis jig set. Welding begun. Suspension uprights machined.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2025 · APR</div><div class="tl-event">Rolling Chassis</div><div class="tl-detail">Drivetrain installed. Wiring harness complete. First shakedown run.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2025 · JUN</div><div class="tl-event">Competition</div><div class="tl-detail">SAE Formula event. Static + dynamic events including endurance and autocross.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const perf = [
+    { label:'0–100 km/h',   val:'4.8 s',   pct:70 },
+    { label:'Top speed',    val:'120 km/h', pct:60 },
+    { label:'Skidpad',      val:'1.4 G',    pct:80 },
+    { label:'Braking',      val:'2.1 G',    pct:85 },
+    { label:'Power / weight', val:'204 hp/t', pct:74 },
+  ];
+  const container = document.getElementById('bars');
+  perf.forEach(p => {
+    container.innerHTML += `
+      <div class="db-row">
+        <div class="db-head">
+          <span class="db-label">${p.label}</span>
+          <span class="db-val">${p.val}</span>
+        </div>
+        <div class="db-track"><div class="db-fill" style="width:0%" data-pct="${p.pct}"></div></div>
+      </div>`;
+  });
+  setTimeout(() => {
+    document.querySelectorAll('.db-fill').forEach(el => { el.style.width = el.dataset.pct + '%'; });
+  }, 120);
+</script>

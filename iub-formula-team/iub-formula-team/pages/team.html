@@ -1,0 +1,127 @@
+<!-- pages/team.html -->
+<style>
+.leadership {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--line); margin-top: 36px;
+}
+.leader-card {
+  background: var(--dark2); padding: 28px 24px;
+  display: flex; gap: 18px; align-items: flex-start;
+  border-top: 3px solid transparent; transition: background .2s, border-top-color .2s;
+}
+.leader-card:hover { background: var(--dark3); border-top-color: var(--gold); }
+.leader-circle {
+  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+  background: var(--navy); border: 2px solid var(--gold-dim);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-weight: 900; font-size: 16px; color: var(--gold);
+}
+.leader-name { font-family: var(--font-head); font-weight: 600; font-size: 17px; }
+.leader-role { font-family: var(--font-mono); font-size: 10px; color: var(--gold); letter-spacing: 2px; margin-top: 5px; }
+.leader-bio  { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.55; }
+
+.team-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 14px; margin-top: 36px;
+}
+.member {
+  background: var(--dark3); border: 1px solid var(--line);
+  overflow: hidden; transition: border-color .2s, transform .2s;
+}
+.member:hover { border-color: var(--gold-dim); transform: translateY(-2px); }
+.member-avatar {
+  height: 120px; background: var(--dark2);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--line); position: relative; overflow: hidden;
+}
+.member-avatar::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,51,102,.08) 10px, rgba(0,51,102,.08) 11px);
+}
+.member-initials { font-family: var(--font-head); font-weight: 900; font-size: 34px; color: var(--gold); position: relative; z-index: 1; }
+.member-info { padding: 14px 16px; }
+.member-name { font-family: var(--font-head); font-weight: 600; font-size: 15px; letter-spacing: .5px; }
+.member-role { font-family: var(--font-mono); font-size: 10px; color: var(--gold); letter-spacing: 2px; margin-top: 4px; }
+.member-dept { font-size: 11px; color: var(--muted); margin-top: 5px; }
+
+@media (max-width: 900px) {
+  .leadership { grid-template-columns: 1fr; }
+  .team-grid  { grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width: 640px) {
+  .team-grid  { grid-template-columns: repeat(2,1fr); }
+  .leader-card { flex-direction: column; gap: 12px; padding: 20px 18px; }
+}
+@media (max-width: 400px) {
+  .team-grid  { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .member-avatar { height: 90px; }
+  .member-initials { font-size: 26px; }
+}
+</style>
+
+<div class="section">
+  <div class="sec-label">// 006 — Leadership</div>
+  <h2 class="sec-title">Leads</h2>
+  <div class="leadership">
+    <div class="leader-card">
+      <div class="leader-circle">TL</div>
+      <div>
+        <div class="leader-name">Team Lead</div>
+        <div class="leader-role">// CAPTAIN</div>
+        <div class="leader-bio">Overall coordination, competition strategy, sponsor relations and final sign-off on all technical decisions.</div>
+      </div>
+    </div>
+    <div class="leader-card">
+      <div class="leader-circle">CE</div>
+      <div>
+        <div class="leader-name">Chief Engineer</div>
+        <div class="leader-role">// CHASSIS &amp; DYNAMICS</div>
+        <div class="leader-bio">Chassis architecture, suspension geometry and all mechanical sub-system integration.</div>
+      </div>
+    </div>
+    <div class="leader-card">
+      <div class="leader-circle">EL</div>
+      <div>
+        <div class="leader-name">Electronics Lead</div>
+        <div class="leader-role">// SYSTEMS &amp; FIRMWARE</div>
+        <div class="leader-bio">Wiring harness, ECU calibration, sensor placement and safety-critical electrical sign-off.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-label">// 007 — Full Roster</div>
+  <h2 class="sec-title">The Team</h2>
+  <p class="sec-body">Replace placeholder cards with real member names and photos.</p>
+  <div class="team-grid" id="teamGrid"></div>
+</div>
+
+<script>
+  const members = [
+    {i:'SW', n:'Software Lead',      r:'TELEMETRY',     d:'CSE'},
+    {i:'PM', n:'Powertrain Lead',    r:'ENGINE / TRANS', d:'Mechanical Eng.'},
+    {i:'AE', n:'Aero Engineer',      r:'CFD / AERO',    d:'Mechanical Eng.'},
+    {i:'ST', n:'Structures Eng.',    r:'FEA / CHASSIS', d:'Mechanical Eng.'},
+    {i:'DL', n:'Data Lead',          r:'DAQ / ANALYSIS',d:'CSE'},
+    {i:'BR', n:'Brake Engineer',     r:'BRAKE SYSTEMS', d:'Mechanical Eng.'},
+    {i:'HV', n:'Harness Tech',       r:'WIRING / ECU',  d:'Electrical Eng.'},
+    {i:'LC', n:'Logistics Coord.',   r:'PROCUREMENT',   d:'BBA'},
+    {i:'BC', n:'Business Lead',      r:'COST REPORT',   d:'BBA'},
+    {i:'SC', n:'Safety Officer',     r:'COMPLIANCE',    d:'Mechanical Eng.'},
+    {i:'FA', n:'Fabrication Lead',   r:'WELDING / CNC', d:'Mechanical Eng.'},
+    {i:'DR', n:'Test Driver',        r:'DRIVER',        d:'Mechanical Eng.'},
+  ];
+  const grid = document.getElementById('teamGrid');
+  members.forEach(m => {
+    grid.innerHTML += `
+      <div class="member">
+        <div class="member-avatar"><span class="member-initials">${m.i}</span></div>
+        <div class="member-info">
+          <div class="member-name">${m.n}</div>
+          <div class="member-role">// ${m.r}</div>
+          <div class="member-dept">${m.d}</div>
+        </div>
+      </div>`;
+  });
+</script>

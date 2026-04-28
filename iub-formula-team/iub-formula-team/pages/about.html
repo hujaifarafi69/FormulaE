@@ -1,0 +1,164 @@
+<!-- pages/about.html -->
+<style>
+.hero {
+  padding: 80px 40px 64px; position: relative; overflow: hidden;
+  min-height: 480px; display: flex; flex-direction: column; justify-content: flex-end;
+  border-bottom: 1px solid var(--line);
+}
+.hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, var(--dark) 0%, var(--navy-mid) 60%, #001830 100%); }
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 60px 60px; opacity: .4;
+}
+.hero-ring { position: absolute; border-radius: 50%; border: 1px solid var(--gold-dim); opacity: .1; }
+.hero-scanline {
+  position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
+}
+.hero-tag   { font-family: var(--font-mono); font-size: 11px; color: var(--gold); letter-spacing: 3px; margin-bottom: 16px; position: relative; z-index: 2; }
+.hero-title { font-family: var(--font-head); font-weight: 900; font-size: 80px; line-height: .88; text-transform: uppercase; position: relative; z-index: 2; letter-spacing: -1px; }
+.hero-title .thin { font-weight: 300; font-size: 52px; letter-spacing: 6px; display: block; }
+.hero-title .accent { color: var(--gold); }
+.hero-sub  { font-size: 15px; color: #8aaec8; margin-top: 20px; max-width: 480px; line-height: 1.75; position: relative; z-index: 2; }
+.hero-actions { display: flex; gap: 14px; margin-top: 32px; position: relative; z-index: 2; flex-wrap: wrap; }
+.hero-stats {
+  display: flex; gap: 40px; flex-wrap: wrap; margin-top: 52px;
+  border-top: 1px solid var(--line); padding-top: 28px; position: relative; z-index: 2;
+}
+.hstat-val   { font-family: var(--font-mono); font-size: 26px; color: var(--gold); }
+.hstat-label { font-family: var(--font-head); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+
+/* ABOUT GRID */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.hex-wrap { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; padding: 12px; }
+.hex {
+  width: 58px; height: 66px; background: var(--dark3); border: 1px solid var(--line);
+  clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  cursor: default; transition: background .25s;
+}
+.hex:hover, .hex.lit { background: var(--navy); border-color: var(--gold-dim); }
+.hex span { font-family: var(--font-mono); font-size: 9px; color: #aac4dc; letter-spacing: .5px; text-align: center; }
+
+/* DISCIPLINES */
+.disciplines { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); margin-top: 40px; }
+.disc-card { background: var(--dark2); padding: 28px 24px; transition: background .2s; border-top: 3px solid transparent; }
+.disc-card:hover { background: var(--dark3); border-top-color: var(--gold); }
+.disc-icon { font-family: var(--font-mono); font-size: 11px; color: var(--gold); letter-spacing: 2px; margin-bottom: 10px; }
+.disc-name { font-family: var(--font-head); font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.disc-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+  .hero { padding: 56px 24px 48px; min-height: 400px; }
+  .hero-title { font-size: 52px; }
+  .hero-title .thin { font-size: 34px; letter-spacing: 3px; }
+  .hero-stats { gap: 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hex-wrap { max-width: 340px; margin: 0 auto; }
+  .disciplines { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 500px) {
+  .hero { padding: 40px 16px 36px; }
+  .hero-title { font-size: 40px; }
+  .hero-title .thin { font-size: 26px; letter-spacing: 2px; }
+  .hero-tag { font-size: 9px; }
+  .hero-sub { font-size: 14px; }
+  .hero-stats { gap: 16px; }
+  .hstat-val { font-size: 20px; }
+  .disciplines { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-ring" style="width:500px;height:500px;right:-80px;top:-60px;"></div>
+  <div class="hero-ring" style="width:300px;height:300px;right:40px;top:40px;border-color:var(--gold);opacity:.06;"></div>
+  <div class="hero-scanline"></div>
+  <div class="hero-tag">// IUB-FT-2025 &nbsp;·&nbsp; DHAKA, BANGLADESH</div>
+  <h1 class="hero-title">
+    <span class="thin">Independent University</span>
+    Formula <span class="accent">Team</span>
+  </h1>
+  <p class="hero-sub">Engineering students at IUB designing, building and racing a single-seat formula-style vehicle — competing at international SAE student competitions.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="document.querySelector('[data-page=car]').click()">View the Car</button>
+    <button class="btn-outline"  onclick="document.querySelector('[data-page=team]').click()">Our Team</button>
+  </div>
+  <div class="hero-stats">
+    <div><div class="hstat-val">01</div><div class="hstat-label">Prototype</div></div>
+    <div><div class="hstat-val">30+</div><div class="hstat-label">Members</div></div>
+    <div><div class="hstat-val">5+</div><div class="hstat-label">Depts</div></div>
+    <div><div class="hstat-val">SAE</div><div class="hstat-label">Competition</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="about-grid">
+    <div>
+      <div class="sec-label">// 001 — Mission</div>
+      <h2 class="sec-title">Built by students.<br>Driven by data.</h2>
+      <p class="sec-body">The IUB Formula Team is a multidisciplinary senior project group from Independent University, Bangladesh. Students from Mechanical, Electrical, and Computer Engineering collaborate end-to-end — from CAD models to real-world track testing.</p>
+      <p class="sec-body" style="margin-top:16px;">Every component is designed, analysed, fabricated and validated by the team. No outsourcing, no shortcuts.</p>
+    </div>
+    <div class="hex-wrap" id="hexGrid"></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-label">// 002 — Disciplines</div>
+  <h2 class="sec-title">What We Do</h2>
+  <div class="disciplines">
+    <div class="disc-card">
+      <div class="disc-icon">// MECH</div>
+      <div class="disc-name">Mechanical</div>
+      <div class="disc-desc">Chassis design, suspension geometry, powertrain integration, fabrication and welding.</div>
+    </div>
+    <div class="disc-card">
+      <div class="disc-icon">// ELEC</div>
+      <div class="disc-name">Electrical</div>
+      <div class="disc-desc">Wiring harness, ECU tuning, sensors, safety systems and power distribution.</div>
+    </div>
+    <div class="disc-card">
+      <div class="disc-icon">// CSE</div>
+      <div class="disc-name">Software</div>
+      <div class="disc-desc">Telemetry dashboards, data acquisition, lap simulation and driver coaching tools.</div>
+    </div>
+    <div class="disc-card">
+      <div class="disc-icon">// FEA</div>
+      <div class="disc-name">Simulation</div>
+      <div class="disc-desc">Finite Element Analysis, CFD aerodynamics, MATLAB vehicle dynamics models.</div>
+    </div>
+    <div class="disc-card">
+      <div class="disc-icon">// BIZ</div>
+      <div class="disc-name">Business</div>
+      <div class="disc-desc">Cost report, sponsor relations, marketing and competition business presentation.</div>
+    </div>
+    <div class="disc-card">
+      <div class="disc-icon">// LOG</div>
+      <div class="disc-name">Logistics</div>
+      <div class="disc-desc">Procurement, workshop management, event travel and competition registration.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const hexData = [
+    {l:'ENG',lit:true},{l:'CAD',lit:false},{l:'FEA',lit:true},
+    {l:'ECU',lit:false},{l:'DAQ',lit:true},{l:'CNC',lit:false},
+    {l:'WLD',lit:true},{l:'SUS',lit:false},{l:'AER',lit:true},
+    {l:'TLM',lit:false},{l:'PCB',lit:true},{l:'SIM',lit:false},
+  ];
+  const grid = document.getElementById('hexGrid');
+  hexData.forEach(h => {
+    const d = document.createElement('div');
+    d.className = 'hex' + (h.lit ? ' lit' : '');
+    d.innerHTML = `<span>${h.l}</span>`;
+    d.addEventListener('mouseenter', () => d.classList.add('lit'));
+    d.addEventListener('mouseleave', () => { if (!h.lit) d.classList.remove('lit'); });
+    grid.appendChild(d);
+  });
+</script>

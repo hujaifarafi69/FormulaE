@@ -1,0 +1,202 @@
+<!-- pages/sponsors.html -->
+<style>
+.tier-section { margin-top: 36px; }
+.tier-label {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 4px;
+  text-transform: uppercase; padding: 6px 14px; display: inline-block; margin-bottom: 16px;
+}
+.tier-title  { background: rgba(245,166,35,.12); color: var(--gold); border: 1px solid var(--gold-dim); }
+.tier-gold   { background: rgba(0,51,102,.3); color: #7aabc8; border: 1px solid var(--navy-light); }
+.tier-silver { background: var(--dark3); color: var(--muted); border: 1px solid var(--line); }
+
+.sponsor-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+.sponsor-box {
+  background: var(--dark3); border: 1px solid var(--line);
+  padding: 18px 28px; font-family: var(--font-head); font-weight: 700;
+  font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted);
+  transition: all .2s; cursor: default; min-width: 120px; text-align: center;
+}
+.sponsor-box:hover    { border-color: var(--gold); color: var(--gold); background: rgba(245,166,35,.05); }
+.sponsor-box.featured { border-color: var(--gold-dim); color: #aac4dc; }
+
+/* PACKAGES TABLE */
+.pkg-wrap { overflow-x: auto; margin-top: 36px; -webkit-overflow-scrolling: touch; }
+.pkg-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560px; }
+.pkg-table th {
+  font-family: var(--font-head); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); border-bottom: 1px solid var(--line); padding: 10px 16px; text-align: left;
+  background: var(--dark2); white-space: nowrap;
+}
+.pkg-table td { padding: 12px 16px; border-bottom: 1px solid var(--line); color: #8aaec8; vertical-align: top; }
+.pkg-table tr:hover td { background: var(--dark3); }
+.pkg-name  { font-family: var(--font-head); font-weight: 600; font-size: 15px; color: var(--text); }
+.pkg-price { font-family: var(--font-mono); font-size: 13px; color: var(--gold); }
+.tick { color: var(--gold); }
+.dash { color: var(--line-light); }
+
+/* CONTACT */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.form-group label {
+  font-family: var(--font-mono); font-size: 10px; color: var(--gold);
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--dark3); border: 1px solid var(--line); color: var(--text);
+  font-family: var(--font-body); font-size: 14px; padding: 10px 14px; outline: none;
+  transition: border-color .2s; border-radius: 0; -webkit-appearance: none; width: 100%;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--gold); }
+.form-group select option   { background: var(--dark2); }
+.form-group textarea        { resize: vertical; min-height: 100px; }
+
+.ci-item  { margin-bottom: 24px; }
+.ci-label { font-family: var(--font-mono); font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-bottom: 6px; }
+.ci-val   { font-size: 14px; color: #8aaec8; line-height: 1.6; }
+
+@media (max-width: 800px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 500px) {
+  .sponsor-box { padding: 14px 18px; font-size: 12px; min-width: 90px; }
+}
+</style>
+
+<div class="section">
+  <div class="sec-label">// 008 — Partners</div>
+  <h2 class="sec-title">Our Sponsors</h2>
+  <p class="sec-body">These organisations make the car possible. Sponsorship funds materials, tooling, entry fees and competition travel.</p>
+
+  <div class="tier-section">
+    <div class="tier-label tier-title">◆ Title Sponsor</div>
+    <div class="sponsor-row">
+      <div class="sponsor-box featured">IUB</div>
+      <div class="sponsor-box">Your Brand Here</div>
+    </div>
+  </div>
+  <div class="tier-section">
+    <div class="tier-label tier-gold">◈ Gold</div>
+    <div class="sponsor-row">
+      <div class="sponsor-box">Partner</div>
+      <div class="sponsor-box">Partner</div>
+      <div class="sponsor-box">Partner</div>
+    </div>
+  </div>
+  <div class="tier-section">
+    <div class="tier-label tier-silver">◇ Silver / In-Kind</div>
+    <div class="sponsor-row">
+      <div class="sponsor-box">In-Kind</div>
+      <div class="sponsor-box">In-Kind</div>
+      <div class="sponsor-box">In-Kind</div>
+      <div class="sponsor-box">In-Kind</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-label">// 009 — Packages</div>
+  <h2 class="sec-title">Sponsorship Tiers</h2>
+  <div class="pkg-wrap">
+    <table class="pkg-table">
+      <thead>
+        <tr>
+          <th>Package</th>
+          <th>Investment</th>
+          <th>Logo on Car</th>
+          <th>Social Media</th>
+          <th>Banner Rights</th>
+          <th>Biz Presentation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pkg-name">Title</span></td>
+          <td><span class="pkg-price">Custom</span></td>
+          <td><span class="tick">✔</span> Hood / Nose</td>
+          <td><span class="tick">✔</span> All posts</td>
+          <td><span class="tick">✔</span> Primary</td>
+          <td><span class="tick">✔</span> Featured</td>
+        </tr>
+        <tr>
+          <td><span class="pkg-name">Gold</span></td>
+          <td><span class="pkg-price">৳ 1,50,000+</span></td>
+          <td><span class="tick">✔</span> Side Pods</td>
+          <td><span class="tick">✔</span> Key posts</td>
+          <td><span class="tick">✔</span></td>
+          <td><span class="tick">✔</span></td>
+        </tr>
+        <tr>
+          <td><span class="pkg-name">Silver</span></td>
+          <td><span class="pkg-price">৳ 75,000+</span></td>
+          <td><span class="tick">✔</span> Wings</td>
+          <td><span class="tick">✔</span> Mentions</td>
+          <td><span class="dash">—</span></td>
+          <td><span class="tick">✔</span></td>
+        </tr>
+        <tr>
+          <td><span class="pkg-name">In-Kind</span></td>
+          <td><span class="pkg-price">Materials / Tools</span></td>
+          <td><span class="tick">✔</span> Rear Wing</td>
+          <td><span class="tick">✔</span></td>
+          <td><span class="dash">—</span></td>
+          <td><span class="dash">—</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-label">// 010 — Contact</div>
+  <h2 class="sec-title">Get In Touch</h2>
+  <div class="contact-grid">
+    <div>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" placeholder="Your name" />
+      </div>
+      <div class="form-group">
+        <label>Organisation</label>
+        <input type="text" placeholder="Company / Institution" />
+      </div>
+      <div class="form-group">
+        <label>Interest</label>
+        <select>
+          <option>Sponsorship — Title</option>
+          <option>Sponsorship — Gold</option>
+          <option>Sponsorship — Silver</option>
+          <option>In-Kind Donation</option>
+          <option>Team Membership</option>
+          <option>General Enquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your interest..."></textarea>
+      </div>
+      <button class="btn-primary" style="margin-top:4px">Send Message</button>
+    </div>
+    <div>
+      <div class="ci-item">
+        <div class="ci-label">// Email</div>
+        <div class="ci-val">formulateam@iub.edu.bd</div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-label">// Faculty Advisor</div>
+        <div class="ci-val">Department of Mechanical Engineering<br>Independent University, Bangladesh</div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-label">// Workshop</div>
+        <div class="ci-val">IUB Campus, Bashundhara<br>Dhaka 1229, Bangladesh</div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-label">// Competition</div>
+        <div class="ci-val">SAE Formula — Student Class<br>June 2025</div>
+      </div>
+    </div>
+  </div>
+</div>

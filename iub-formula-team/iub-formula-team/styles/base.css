@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Share+Tech+Mono&family=Barlow:wght@300;400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:       #003366;
+  --navy-dark:  #001f40;
+  --navy-mid:   #00264d;
+  --navy-light: #0a4080;
+  --gold:       #F5A623;
+  --gold-dim:   #c07d0f;
+  --gold-light: #ffc14d;
+  --dark:       #02111f;
+  --dark2:      #041728;
+  --dark3:      #071e30;
+  --line:       #0d3055;
+  --line-light: #1a4a72;
+  --text:       #eef2f7;
+  --muted:      #5d85aa;
+  --font-head:  'Barlow Condensed', sans-serif;
+  --font-mono:  'Share Tech Mono', monospace;
+  --font-body:  'Barlow', sans-serif;
+}
+
+html, body { background: var(--dark); color: var(--text); font-family: var(--font-body); min-height: 100vh; }
+
+/* NAV */
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 40px; border-bottom: 1px solid var(--line);
+  background: var(--dark2); position: sticky; top: 0; z-index: 100; gap: 16px;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+.nav-badge img {
+  height: 40px;   /* adjust as needed */
+  width: auto;
+  display: block;
+}
+.nav-badge span { font-family: var(--font-head); font-weight: 900; font-size: 12px; color: var(--navy-dark); letter-spacing: 1px; }
+.nav-title { font-family: var(--font-head); font-weight: 700; font-size: 17px; letter-spacing: 3px; text-transform: uppercase; color: var(--text); white-space: nowrap; }
+.nav-links { display: flex; gap: 2px; flex-wrap: wrap; justify-content: center; }
+.nav-links a {
+  font-family: var(--font-head); font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; padding: 8px 16px;
+  border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; white-space: nowrap;
+}
+.nav-links a:hover  { color: var(--text); }
+.nav-links a.active { color: var(--gold); border-bottom-color: var(--gold); }
+.nav-cta {
+  font-family: var(--font-head); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--gold); color: var(--navy-dark); padding: 9px 22px; border: none; cursor: pointer;
+  font-weight: 700; clip-path: polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);
+  transition: background .2s; flex-shrink: 0; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--gold-light); }
+
+/* HAMBURGER */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); transition: all .3s; }
+.nav-mobile-menu {
+  display: none; position: fixed; top: 71px; left: 0; right: 0;
+  background: var(--dark2); border-bottom: 2px solid var(--gold-dim);
+  z-index: 99; padding: 8px 0; flex-direction: column;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a {
+  font-family: var(--font-head); font-size: 15px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; padding: 14px 24px;
+  border-left: 3px solid transparent; transition: all .2s;
+}
+.nav-mobile-menu a:hover,
+.nav-mobile-menu a.active { color: var(--gold); border-left-color: var(--gold); background: rgba(245,166,35,.05); }
+.nav-mobile-cta {
+  font-family: var(--font-head); font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--gold); color: var(--navy-dark); border: none; cursor: pointer;
+  font-weight: 700; padding: 12px; margin: 8px 24px 12px; text-align: center;
+}
+
+/* TICKER */
+.ticker { background: var(--navy); padding: 8px 0; overflow: hidden; border-bottom: 2px solid var(--gold-dim); }
+.ticker-inner { display: flex; white-space: nowrap; animation: ticker 22s linear infinite; }
+.ticker-item { font-family: var(--font-mono); font-size: 11px; letter-spacing: 3px; color: #7aabc8; padding: 0 36px; }
+.ticker-item .dot { color: var(--gold); }
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* SHARED SECTION */
+.section { padding: 64px 40px; border-bottom: 1px solid var(--line); }
+.sec-label { font-family: var(--font-mono); font-size: 10px; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; }
+.sec-title { font-family: var(--font-head); font-weight: 700; font-size: 40px; text-transform: uppercase; letter-spacing: 1px; line-height: 1.05; margin-bottom: 24px; }
+.sec-body  { font-size: 15px; color: #8aaec8; line-height: 1.8; max-width: 560px; }
+
+/* BUTTONS */
+.btn-primary {
+  font-family: var(--font-head); font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  background: var(--gold); color: var(--navy-dark); padding: 13px 32px; border: none;
+  cursor: pointer; font-weight: 700; clip-path: polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%); transition: background .2s;
+}
+.btn-primary:hover { background: var(--gold-light); }
+.btn-outline {
+  font-family: var(--font-head); font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  background: transparent; color: var(--text); padding: 12px 32px;
+  border: 1px solid var(--line-light); cursor: pointer; transition: border-color .2s, color .2s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* FOOTER */
+footer {
+  padding: 28px 40px; display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 12px;
+  background: var(--navy-dark); border-top: 2px solid var(--navy);
+}
+.footer-left { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 1.5px; }
+.footer-left span { color: var(--gold); }
+.footer-right { font-family: var(--font-head); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 14px 24px; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .section { padding: 48px 24px; }
+  .sec-title { font-size: 32px; }
+  footer { padding: 20px 24px; }
+}
+@media (max-width: 600px) {
+  .nav-title { font-size: 14px; letter-spacing: 2px; }
+  .section { padding: 36px 16px; }
+  .sec-title { font-size: 26px; }
+  .btn-primary, .btn-outline { padding: 11px 20px; font-size: 12px; letter-spacing: 2px; }
+  footer { flex-direction: column; align-items: flex-start; padding: 18px 16px; }
+  .footer-left { font-size: 10px; }
+}

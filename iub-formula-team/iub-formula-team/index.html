@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IUB Formula Team</title>
+  <link rel="stylesheet" href="styles/base.css" />
+</head>
+<body>
+
+  <!-- DESKTOP NAV -->
+  <nav>
+    <a class="nav-logo" href="#" onclick="loadPage('about'); return false;">
+      <div class="nav-badge">
+        <img src="https://imgs.search.brave.com/qsts8dHTYcqk2qVSgoBXfh7bq_rKLW5OKXp4E5HVUdc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9sb2dv/ZGl4LmNvbS9sb2dv/LzE5ODMyODEucG5n" alt="IUB">
+      </div>
+      <div class="nav-title">FormulaE Team</div>
+    </a>
+    <div class="nav-links">
+      <a href="#" data-page="about"    onclick="loadPage('about');    return false;">About</a>
+      <a href="#" data-page="car"      onclick="loadPage('car');      return false;">Car</a>
+      <a href="#" data-page="team"     onclick="loadPage('team');     return false;">Team</a>
+      <a href="#" data-page="sponsors" onclick="loadPage('sponsors'); return false;">Sponsors</a>
+    </div>
+    <button class="nav-cta" onclick="loadPage('sponsors'); return false;">Join Us</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE SLIDE-DOWN MENU -->
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="#" data-page="about"    onclick="loadPage('about');    closeMobile(); return false;">About</a>
+    <a href="#" data-page="car"      onclick="loadPage('car');      closeMobile(); return false;">Car</a>
+    <a href="#" data-page="team"     onclick="loadPage('team');     closeMobile(); return false;">Team</a>
+    <a href="#" data-page="sponsors" onclick="loadPage('sponsors'); closeMobile(); return false;">Sponsors</a>
+    <button class="nav-mobile-cta"   onclick="loadPage('sponsors'); closeMobile();">Join Us</button>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item">IUB FORMULA TEAM <span class="dot">◆</span></span>
+      <span class="ticker-item">INDEPENDENT UNIVERSITY BANGLADESH <span class="dot">◆</span></span>
+      <span class="ticker-item">SENIOR PROJECT 2025 <span class="dot">◆</span></span>
+      <span class="ticker-item">SAE FORMULA <span class="dot">◆</span></span>
+      <span class="ticker-item">DESIGN <span class="dot">◆</span> BUILD <span class="dot">◆</span> RACE <span class="dot">◆</span></span>
+      <span class="ticker-item">IUB FORMULA TEAM <span class="dot">◆</span></span>
+      <span class="ticker-item">INDEPENDENT UNIVERSITY BANGLADESH <span class="dot">◆</span></span>
+      <span class="ticker-item">SENIOR PROJECT 2025 <span class="dot">◆</span></span>
+      <span class="ticker-item">SAE FORMULA <span class="dot">◆</span></span>
+      <span class="ticker-item">DESIGN <span class="dot">◆</span> BUILD <span class="dot">◆</span> RACE <span class="dot">◆</span></span>
+    </div>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div id="content"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      IUB Formula Team &nbsp;·&nbsp;
+      <span>Independent University, Bangladesh</span>
+      &nbsp;·&nbsp; Dhaka
+    </div>
+    <div class="footer-right">Senior Project · 2025</div>
+  </footer>
+
+  <script>
+    function setActiveLinks(name) {
+      document.querySelectorAll('[data-page]').forEach(a => {
+        a.classList.toggle('active', a.dataset.page === name);
+      });
+    }
+
+    async function loadPage(name) {
+      setActiveLinks(name);
+      try {
+        const res  = await fetch(`pages/${name}.html`);
+        const html = await res.text();
+        const container = document.getElementById('content');
+        container.innerHTML = html;
+        container.querySelectorAll('script').forEach(old => {
+          const s = document.createElement('script');
+          s.textContent = old.textContent;
+          old.replaceWith(s);
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e) {
+        document.getElementById('content').innerHTML =
+          `<p style="padding:40px;color:var(--muted);">Could not load: ${name}.html — run via local server, not file://</p>`;
+      }
+    }
+
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function closeMobile() {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+
+    loadPage('about');
+  </script>
+
+</body>
+</html>
