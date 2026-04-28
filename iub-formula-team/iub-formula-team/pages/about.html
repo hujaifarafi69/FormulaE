@@ -18,7 +18,7 @@
   background: repeating-linear-gradient(0deg, transparent, transparent 0px, rgba(0,0,0,.04) 0px, rgba(0,0,0,.04) 4px);
 }
 .hero-tag   { font-family: var(--font-mono); font-size: 11px; color: var(--gold); letter-spacing: 3px; margin-bottom: 16px; position: relative; z-index: 2; }
-.hero-title { font-family: var(--font-head); font-weight: 900; font-size: 80px; line-height: .88; text-transform: uppercase; position: relative; z-index: 2; letter-spacing: -1px; }
+.hero-title { font-family: var(--font-head); font-weight: 900; font-size: 80px; line-height: .88; position: relative; z-index: 2; letter-spacing: -1px; }
 .hero-title .thin { font-weight: 300; font-size: 52px; letter-spacing: 6px; display: block; }
 .hero-title .accent { color: var(--gold); }
 .hero-sub  { font-size: 15px; color: #8aaec8; margin-top: 20px; max-width: 480px; line-height: 1.75; position: relative; z-index: 2; }
@@ -70,28 +70,52 @@
   .hstat-val { font-size: 20px; }
   .disciplines { grid-template-columns: 1fr; }
 }
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 45% 70%;  
+  transition: object-position 0.1s ease-out;
+}
+.btn1-outline {
+  font-family: var(--font-head); 
+  font-size: 13px; 
+  letter-spacing: 3px; 
+  text-transform: uppercase;
+  background: #00336665; 
+  color: white; 
+  padding: 13px 32px; 
+  border: none;
+  cursor: pointer; 
+  font-weight: 700; 
+  clip-path: polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%); 
+  transition: all 0.2s;
+}
+
+.btn1-outline:hover {
+  background: var(--gold-light);
+}
 </style>
 
+
 <div class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg">
+  <img class="hero-bg-img" src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/refs/heads/main/carr.jpg" alt="">
+</div>
   <div class="hero-grid"></div>
   <div class="hero-ring" style="width:500px;height:500px;right:-80px;top:-60px;"></div>
   <div class="hero-ring" style="width:300px;height:300px;right:40px;top:40px;border-color:var(--gold);opacity:.06;"></div>
   <div class="hero-scanline"></div>
   <div class="hero-tag">// IUB-FT-2025 &nbsp;·&nbsp; DHAKA, BANGLADESH</div>
   <h1 class="hero-title">
-    <span class="thin">Independent University</span>
-    Formula <span class="accent">Team</span>
+    <span class="thin">INDEPENDENT UNIVERSITY</span>
+    FormulaE <span class="accent">Team</span>
   </h1>
   <p class="hero-sub">Engineering students at IUB designing, building and racing a single-seat formula-style vehicle — competing at international SAE student competitions.</p>
   <div class="hero-actions">
     <button class="btn-primary" onclick="document.querySelector('[data-page=car]').click()">View the Car</button>
-    <button class="btn-outline"  onclick="document.querySelector('[data-page=team]').click()">Our Team</button>
+    <button class="btn1-outline"  onclick="document.querySelector('[data-page=team]').click()">Our Team</button>
   </div>
-  <div class="hero-bg">
-  <div style="position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/refs/heads/main/carr.jpg'); background-size: cover; background-position: center;"></div>
-  <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,25,47,0.85) 0%, rgba(0,24,48,0.9) 100%);"></div>
-</div>
   <div class="hero-stats">
     <div><div class="hstat-val">01</div><div class="hstat-label">Prototype</div></div>
     <div><div class="hstat-val">30+</div><div class="hstat-label">Members</div></div>
@@ -99,7 +123,6 @@
     <div><div class="hstat-val">SAE</div><div class="hstat-label">Competition</div></div>
   </div>
 </div>
-
 <div class="section">
   <div class="about-grid">
     <div>
@@ -165,4 +188,29 @@
     d.addEventListener('mouseleave', () => { if (!h.lit) d.classList.remove('lit'); });
     grid.appendChild(d);
   });
+ // Dynamic focal point shifting based on screen width
+const heroImg = document.querySelector('.hero-bg-img');
+if (heroImg) {
+  function updateFocalPoint() {
+    const width = window.innerWidth;
+    let horizontalPos;
+    if (width < 640) {
+      horizontalPos = 70;
+    } else if (width < 1024) {
+      horizontalPos = 65;
+    } else if (width < 1440) {
+      horizontalPos = 60;
+    } else {
+      horizontalPos = 45;
+    }
+    // Changed to 70% - shows bottom of image, chops top instead
+    heroImg.style.objectPosition = `${horizontalPos}% 70%`;
+  }
+  
+  updateFocalPoint();
+  
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(updateFocalPoint);
+  });
+}
 </script>

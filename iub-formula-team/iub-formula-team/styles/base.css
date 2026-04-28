@@ -46,7 +46,7 @@ nav {
   display: block;
 }
 .nav-badge span { font-family: var(--font-head); font-weight: 900; font-size: 12px; color: var(--navy-dark); letter-spacing: 1px; }
-.nav-title { font-family: var(--font-head); font-weight: 700; font-size: 17px; letter-spacing: 3px; text-transform: uppercase; color: var(--text); white-space: nowrap; }
+.nav-title { font-family: var(--font-head); font-weight: 700; font-size: 17px; letter-spacing: 3px; color: var(--text); white-space: nowrap; }
 .nav-links { display: flex; gap: 2px; flex-wrap: wrap; justify-content: center; }
 .nav-links a {
   font-family: var(--font-head); font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
