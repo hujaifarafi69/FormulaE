@@ -6,10 +6,10 @@
   --navy:       #003366;
   --navy-dark:  #001f40;
   --navy-mid:   #00264d;
-  --navy-light: #0a4080;
-  --gold:       #F5A623;
-  --gold-dim:   #c07d0f;
-  --gold-light: #ffc14d;
+  --navy-light: #2a2928;
+  --gold:       #0aa09d;  /*most ui*/
+  --gold-dim:   #0aa09d33; /*for borders, bg accents*/
+  --gold-light: #3f4c62;
   --dark:       #02111f;
   --dark2:      #041728;
   --dark3:      #071e30;
@@ -23,7 +23,16 @@
 }
 
 html, body { background: var(--dark); color: var(--text); font-family: var(--font-body); min-height: 100vh; }
+/* hide scrollbar but keep scroll working */
+/* Firefox */
+* {
+  scrollbar-width: none;
+}
 
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  display: none;
+}
 /* NAV */
 nav {
   display: flex; justify-content: space-between; align-items: center;
