@@ -87,12 +87,12 @@
     </div>
   </div>
   <div class="tier-section">
-    <div class="tier-label tier-silver">◇ Silver / In-Kind</div>
+    <div class="tier-label tier-silver">◇ Silver</div>
     <div class="sponsor-row">
-      <div class="sponsor-box">In-Kind</div>
-      <div class="sponsor-box">In-Kind</div>
-      <div class="sponsor-box">In-Kind</div>
-      <div class="sponsor-box">In-Kind</div>
+      <div class="sponsor-box">Silver</div>
+      <div class="sponsor-box">Silver</div>
+      <div class="sponsor-box">Silver</div>
+      <div class="sponsor-box">Silver</div>
     </div>
   </div>
 </div>
@@ -137,14 +137,6 @@
           <td><span class="dash">—</span></td>
           <td><span class="tick">✔</span></td>
         </tr>
-        <tr>
-          <td><span class="pkg-name">In-Kind</span></td>
-          <td><span class="pkg-price">Materials / Tools</span></td>
-          <td><span class="tick">✔</span> Rear Wing</td>
-          <td><span class="tick">✔</span></td>
-          <td><span class="dash">—</span></td>
-          <td><span class="dash">—</span></td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -155,48 +147,37 @@
   <h2 class="sec-title">Get In Touch</h2>
   <div class="contact-grid">
     <div>
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" placeholder="Your name" />
-      </div>
-      <div class="form-group">
-        <label>Organisation</label>
-        <input type="text" placeholder="Company / Institution" />
-      </div>
-      <div class="form-group">
-        <label>Interest</label>
-        <select>
-          <option>Sponsorship — Title</option>
-          <option>Sponsorship — Gold</option>
-          <option>Sponsorship — Silver</option>
-          <option>In-Kind Donation</option>
-          <option>Team Membership</option>
-          <option>General Enquiry</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Message</label>
-        <textarea placeholder="Tell us about your interest..."></textarea>
-      </div>
-      <button class="btn-primary" style="margin-top:4px">Send Message</button>
+      <form name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact" />
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="package">Interest</label>
+          <select id="package" name="package">
+            <option value="">Select a tier…</option>
+            <option value="title">Title</option>
+            <option value="gold">Gold</option>
+            <option value="silver">Silver</option>
+            <option value="student">Student</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about your interest…"></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary" style="margin-top:4px">Send Message</button>
+      </form>
     </div>
     <div>
-      <div class="ci-item">
-        <div class="ci-label">// Email</div>
-        <div class="ci-val">formulateam@iub.edu.bd</div>
-      </div>
-      <div class="ci-item">
-        <div class="ci-label">// Faculty Advisor</div>
-        <div class="ci-val">Department of Mechanical Engineering<br>Independent University, Bangladesh</div>
-      </div>
-      <div class="ci-item">
-        <div class="ci-label">// Workshop</div>
-        <div class="ci-val">IUB Campus, Bashundhara<br>Dhaka 1229, Bangladesh</div>
-      </div>
-      <div class="ci-item">
-        <div class="ci-label">// Competition</div>
-        <div class="ci-val">SAE Formula — Student Class<br>June 2025</div>
-      </div>
+      <!-- your ci-item blocks unchanged -->
     </div>
   </div>
 </div>
