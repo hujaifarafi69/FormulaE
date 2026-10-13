@@ -1,0 +1,160 @@
+<!-- pages/car.html -->
+<style>
+.specs-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--line); margin-top: 36px;
+}
+.spec-card { background: var(--dark2); padding: 28px 24px; transition: background .2s, border-top .2s; cursor: default; border-top: 3px solid transparent; }
+.spec-card:hover { background: var(--dark3); border-top-color: var(--gold); }
+.spec-num  { font-family: var(--font-mono); font-size: 30px; color: var(--gold); line-height: 1; }
+.spec-unit { font-family: var(--font-mono); font-size: 15px; color: var(--gold-dim); }
+.spec-name { font-family: var(--font-head); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+.spec-desc { font-size: 12px; color: #3d6080; margin-top: 5px; line-height: 1.55; }
+
+.car-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+
+/* DATA BARS */
+.data-bars { margin-top: 36px; display: flex; flex-direction: column; gap: 18px; }
+.db-row    { display: flex; flex-direction: column; gap: 6px; }
+.db-head   { display: flex; justify-content: space-between; align-items: baseline; }
+.db-label  { font-family: var(--font-head); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.db-val    { font-family: var(--font-mono); font-size: 13px; color: var(--gold); }
+.db-track  { height: 3px; background: var(--dark3); border-radius: 2px; }
+.db-fill   { height: 100%; background: linear-gradient(90deg, var(--navy-light), var(--gold)); border-radius: 2px; transition: width .9s ease; }
+
+/* TIMELINE */
+.tl-wrap { position: relative; padding-left: 28px; }
+.tl-wrap::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.tl-item  { position: relative; padding-bottom: 36px; padding-left: 24px; }
+.tl-dot   { position: absolute; left: -32px; top: 5px; width: 8px; height: 8px; background: var(--gold); clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%); }
+.tl-year  { font-family: var(--font-mono); font-size: 10px; color: var(--gold); letter-spacing: 3px; }
+.tl-event { font-family: var(--font-head); font-size: 18px; font-weight: 600; letter-spacing: .5px; margin-top: 4px; }
+.tl-detail { font-size: 13px; color: var(--muted); margin-top: 5px; line-height: 1.55; max-width: 400px; }
+
+/* PARTS GALLERY */
+.parts-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); margin-top: 36px; }
+.part-card  { background: var(--dark2); }
+.part-photo { height: 160px; background: var(--dark3); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.part-photo img { width: 100%; height: 100%; object-fit: cover; }
+.part-photo-empty { font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; color: var(--muted); }
+.part-name  { font-family: var(--font-head); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; padding: 14px 16px; color: var(--text); }
+
+/* NUMBERS PHOTO */
+.numbers-photo { width: 100%; border-radius: 2px; overflow: hidden; margin-bottom: 24px; }
+.numbers-photo img { width: 100%; display: block; object-fit: cover; }
+
+@media (max-width: 800px) {
+  .specs-grid  { grid-template-columns: repeat(2,1fr); }
+  .car-split   { grid-template-columns: 1fr; gap: 40px; }
+  .parts-grid  { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 500px) {
+  .specs-grid  { grid-template-columns: 1fr; }
+  .spec-num    { font-size: 24px; }
+  .parts-grid  { grid-template-columns: 1fr; }
+}
+
+.car-hero { display: none; }
+@media (max-width: 790px) {
+  .car-hero { display: flex; }
+}
+.car-crop {
+  position: relative; overflow: hidden;
+  width: 100%; max-width: 900px;
+  aspect-ratio: 720 / 410;           /* crop window: x 800–1520, y 210–620 */
+  background: #061a2a;
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 52%, #000 60%, transparent 100%);
+          mask-image: radial-gradient(ellipse 70% 70% at 50% 52%, #000 60%, transparent 100%);
+}
+.car-crop img {
+  position: absolute; display: block;
+  width: 225.4%;                      /* 1623 / 720 */
+  left: -111.1%;                      /* -800 / 720 */
+  top: -51.2%;                        /* -210 / 410 */
+  max-width: none;
+}
+</style>
+
+<div class="section car-hero">
+  <div class="car-crop">
+    <img src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/refs/heads/main/carr.jpg" alt="IUB FormulaE car">
+  </div>
+</div>
+<div class="section">
+  <div class="sec-label">// 004 — Components</div>
+  <h2 class="sec-title">The Parts</h2>
+  <p class="sec-body">Key components on the FormulaE Car</p>
+  <div class="parts-grid">
+    <div class="part-card">
+      <div class="part-photo"><img src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/79797f2695820dbf899cd1d1b525ba2b53349091/Blue%2010%20HP%20Industrial%20Motor%20Product%20Shot.png"></div>
+      <div class="part-name">10 HP 60V Three-Phase Induction Motor</div>
+    </div>
+    <div class="part-card">
+      <div class="part-photo"><img src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/79797f2695820dbf899cd1d1b525ba2b53349091/Industrial%20Electronics%20Junction%20Box.png" alt="6kW three-phase VFD, self developed"></div>
+      <div class="part-name">6kW Three-Phase VFD — Self Developed</div>
+    </div>
+    <div class="part-card">
+      <div class="part-photo"><img src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/79797f2695820dbf899cd1d1b525ba2b53349091/Industrial%20LiFePO4%20Battery%20Pack.png" alt="60V 100Ah LiFePO4 battery"></div>
+      <div class="part-name">60V 100Ah LiFePO4 Battery</div>
+    </div>
+    <div class="part-card">
+      <div class="part-photo"><img src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/79797f2695820dbf899cd1d1b525ba2b53349091/Silver%20Tubular%20Racecar%20Chassis%20Render.png" alt="MS frame chassis"></div>
+      <div class="part-name">Chassis — MS Frame</div>
+    </div>
+    <div class="part-card">
+      <div class="part-photo"><img src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/79797f2695820dbf899cd1d1b525ba2b53349091/Detailed%20Double-Wishbone%20Suspension%20Assembly.png" alt="Double wishbone suspension"></div>
+      <div class="part-name">Double Wishbone Suspension</div>
+    </div>
+    <div class="part-card">
+      <div class="part-photo"><img src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/79797f2695820dbf899cd1d1b525ba2b53349091/Futuristic%20Telescoping%20Wheel%20Assembly.png"></div>
+      <div class="part-name">Rack and Pinion Steering System</div>
+    </div>
+    <div class="part-card">
+      <div class="part-photo"><img src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/79797f2695820dbf899cd1d1b525ba2b53349091/Differential%20and%20Clutch%20System.jpg"></div>
+      <div class="part-name">Differential and Clutch System</div>
+    </div>
+    <div class="part-card">
+      <div class="part-photo"><img src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/79797f2695820dbf899cd1d1b525ba2b53349091/brakes.jpg"></div>
+      <div class="part-name">Braking System</div>
+    </div>
+    <div class="part-card">
+      <div class="part-photo"><img src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/79797f2695820dbf899cd1d1b525ba2b53349091/rulebook.jpeg" alt="Formula Student China 2025 rulebook"></div>
+      <div class="part-name">Rulebook — Formula Student China 2025</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="sec-label">// 006 — Build Timeline</div>
+  <h2 class="sec-title">Schedule</h2>
+  <div class="tl-wrap">
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2023 · AUG</div><div class="tl-event">Team Founded</div><div class="tl-detail">IUB FormulaE founded, 17 August 2023.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2025</div><div class="tl-event">Formula Student China 2025 — Qualifier</div><div class="tl-detail">Competing in the Formula Student China 2025 qualifying round.</div></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const perf = [
+    { label:'0–100 km/h',   val:'15 s',    pct:70 },
+    { label:'Top speed',    val:'105 km/h', pct:60 },
+    { label:'Torque',       val:'50 Nm',    pct:65 },
+    { label:'Skidpad / Braking', val:'—',   pct:0  },
+  ];
+  const container = document.getElementById('bars');
+  perf.forEach(p => {
+    container.innerHTML += `
+      <div class="db-row">
+        <div class="db-head">
+          <span class="db-label">${p.label}</span>
+          <span class="db-val">${p.val}</span>
+        </div>
+        <div class="db-track"><div class="db-fill" style="width:0%" data-pct="${p.pct}"></div></div>
+      </div>`;
+  });
+  setTimeout(() => {
+    document.querySelectorAll('.db-fill').forEach(el => { el.style.width = el.dataset.pct + '%'; });
+  }, 120);
+})();
+</script>

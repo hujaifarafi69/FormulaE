@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IUB Formula Team</title>
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="preload" as="image" href="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/refs/heads/main/carr.jpg">
+</head>
+<body>
+
+  <!-- DESKTOP NAV -->
+  <nav>
+    <a class="nav-logo" href="#" onclick="loadPage('about'); return false;">
+      <div class="nav-badge">
+        <img src="https://raw.githubusercontent.com/hujaifarafi69/PHOTOS/refs/heads/main/formula_png.png" alt="IUB">
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#" data-page="about"   onclick="loadPage('about');   return false;">About</a>
+      <a href="#" data-page="car"     onclick="loadPage('car');     return false;">Car</a>
+      <a href="#" data-page="team"    onclick="loadPage('team');    return false;">Team</a>
+      <a href="#" data-page="news"    onclick="loadPage('news');    return false;">News</a>
+      <a href="#" data-page="contact" onclick="loadPage('contact'); return false;">Contact Us</a>
+    </div>
+    <button class="nav-cta" onclick="loadPage('contact'); return false;">Join Us</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE SLIDE-DOWN MENU -->
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="#" data-page="about"   onclick="loadPage('about');   closeMobile(); return false;">About</a>
+    <a href="#" data-page="car"     onclick="loadPage('car');     closeMobile(); return false;">Car</a>
+    <a href="#" data-page="team"    onclick="loadPage('team');    closeMobile(); return false;">Team</a>
+    <a href="#" data-page="news"    onclick="loadPage('news');    closeMobile(); return false;">News</a>
+    <a href="#" data-page="contact" onclick="loadPage('contact'); closeMobile(); return false;">Contact Us</a>
+    <button class="nav-mobile-cta"   onclick="loadPage('contact'); closeMobile();">Join Us</button>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item">IUB FORMULA TEAM <span class="dot">◆</span></span>
+      <span class="ticker-item">INDEPENDENT UNIVERSITY BANGLADESH <span class="dot">◆</span></span>
+      <span class="ticker-item">SENIOR PROJECT 2025 <span class="dot">◆</span></span>
+      <span class="ticker-item">SAE FORMULA <span class="dot">◆</span></span>
+      <span class="ticker-item">DESIGN <span class="dot">◆</span> BUILD <span class="dot">◆</span> RACE <span class="dot">◆</span></span>
+      <span class="ticker-item">IUB FORMULA TEAM <span class="dot">◆</span></span>
+      <span class="ticker-item">INDEPENDENT UNIVERSITY BANGLADESH <span class="dot">◆</span></span>
+      <span class="ticker-item">SENIOR PROJECT 2025 <span class="dot">◆</span></span>
+      <span class="ticker-item">SAE FORMULA <span class="dot">◆</span></span>
+      <span class="ticker-item">DESIGN <span class="dot">◆</span> BUILD <span class="dot">◆</span> RACE <span class="dot">◆</span></span>
+    </div>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div id="content"></div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">IUB FormulaE</div>
+        <div class="footer-brand-sub">Independent University, Bangladesh<br>Dept. of Electrical &amp; Electronic Engineering<br>Green Energy Research Center</div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Explore</div>
+        <a href="#" onclick="loadPage('about'); return false;">About</a>
+        <a href="#" onclick="loadPage('car'); return false;">Car</a>
+        <a href="#" onclick="loadPage('team'); return false;">Team</a>
+        <a href="#" onclick="loadPage('news'); return false;">News</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <a href="mailto:formulae@iub.edu.bd">formulae@iub.edu.bd</a>
+        <span class="footer-text">Main Building, Basement 2<br>EEE Power System Lab, Room 2004</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">IUB Formula Team &nbsp;·&nbsp; <span>Independent University, Bangladesh</span> &nbsp;·&nbsp; Dhaka</div>
+      <div class="footer-right">Founded 17 Aug 2023</div>
+    </div>
+  </footer>
+
+  <script>
+    function setActiveLinks(name) {
+      document.querySelectorAll('[data-page]').forEach(a => {
+        a.classList.toggle('active', a.dataset.page === name);
+      });
+    }
+
+    async function loadPage(name) {
+      setActiveLinks(name);
+      try {
+        const res  = await fetch(`pages/${name}.html`);
+        if (!res.ok) throw new Error(res.status);
+        const html = await res.text();
+        const container = document.getElementById('content');
+        container.innerHTML = html;
+        container.querySelectorAll('script').forEach(old => {
+          const s = document.createElement('script');
+          s.textContent = old.textContent;
+          old.replaceWith(s);
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e) {
+        document.getElementById('content').innerHTML =
+          `<p style="padding:40px;color:var(--muted);">Could not load: ${name}.html — run via local server, not file://</p>`;
+      }
+    }
+
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function closeMobile() {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+
+    loadPage('about');
+  </script>
+
+  <style>
+    .site-footer { flex-direction: column; align-items: stretch; padding: 0; background: var(--navy-dark); border-top: 2px solid var(--navy); }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; padding: 40px 40px 28px; }
+    .footer-brand-name { font-family: var(--font-head); font-weight: 900; font-size: 20px; letter-spacing: 2px; color: var(--text); }
+    .footer-brand-sub  { font-size: 12px; color: var(--muted); line-height: 1.7; margin-top: 10px; }
+    .footer-col-title  { font-family: var(--font-mono); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .footer-col a, .footer-col .footer-text { display: block; font-size: 13px; color: var(--muted); text-decoration: none; margin-bottom: 6px; line-height: 1.6; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding: 18px 40px; border-top: 1px solid var(--line); }
+    @media (max-width: 800px) {
+      .footer-grid { grid-template-columns: 1fr; padding: 32px 24px 20px; gap: 24px; }
+      .footer-bottom { padding: 16px 24px; }
+    }
+  </style>
+
+</body>
+</html>

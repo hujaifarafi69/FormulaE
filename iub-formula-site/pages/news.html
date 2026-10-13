@@ -1,0 +1,44 @@
+<!-- pages/news.html -->
+<style>
+.news-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--line); margin-top: 36px; }
+.news-card { background: var(--dark2); padding: 26px 24px; text-decoration: none; display: block; border-top: 3px solid transparent; transition: background .2s, border-top-color .2s; }
+.news-card:hover { background: var(--dark3); border-top-color: var(--gold); }
+.news-tag  { font-family: var(--font-mono); font-size: 10px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; }
+.news-title { font-family: var(--font-head); font-weight: 600; font-size: 17px; color: var(--text); margin-top: 10px; line-height: 1.35; }
+.news-src  { font-size: 12px; color: var(--muted); margin-top: 10px; }
+@media (max-width: 700px) { .news-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="section">
+  <div class="sec-label">// 010 — Press</div>
+  <h2 class="sec-title">News</h2>
+  <p class="sec-body">Coverage, features and updates on the team's work.</p>
+  <div class="news-grid">
+    <a class="news-card" href="https://iub.ac.bd/news-and-events/news-archive/2025-November/691d97165224975fb6460368" target="_blank" rel="noopener noreferrer">
+      <div class="news-tag">// IUB News Archive</div>
+      <div class="news-title">IUB Formula Team — news archive feature</div>
+      <div class="news-src">iub.ac.bd</div>
+    </a>
+    <a class="news-card" href="https://tbsgraduates.net/campus/iub-researchers-repurpose-ship-breaking-motors-for-low-voltage-green-applications/" target="_blank" rel="noopener noreferrer">
+      <div class="news-tag">// Feature</div>
+      <div class="news-title">IUB researchers repurpose ship-breaking motors for low-voltage green applications</div>
+      <div class="news-src">tbsgraduates.net</div>
+    </a>
+    <a class="news-card" href="https://www.youtube.com/watch?v=Mg2pM4bdlBg" target="_blank" rel="noopener noreferrer">
+      <div class="news-tag">// Video</div>
+      <div class="news-title">Watch: IUB FormulaE on YouTube</div>
+      <div class="news-src">youtube.com</div>
+    </a>
+    <a class="news-card" href="https://www.facebook.com/byd.com.bd/posts/pfbid02jPnRsPoQsqdr8sc6k74PVDjELZmq8vZStxWa1W3uUSz9ArCTmk6kgsiwqTD4DP3Nl" target="_blank" rel="noopener noreferrer">
+      <div class="news-tag">// Facebook</div>
+      <div class="news-title">BYD Bangladesh — post featuring the team</div>
+      <div class="news-src">facebook.com</div>
+    </a>
+    <a class="news-card" href="https://www.facebook.com/photo/?fbid=122188580042552778&set=a.122118711758552778" target="_blank" rel="noopener noreferrer">
+      <div class="news-tag">// Photo</div>
+      <div class="news-title">Team photo gallery</div>
+      <div class="news-src">facebook.com</div>
+    </a>
+    <div style="background:var(--dark2);"></div>
+  </div>
+</div>
